@@ -21,7 +21,9 @@ export default function AboutScreen() {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Acerca de esta aplicación</Text>
           <Text style={styles.paragraph}>
-            ProTG Mujer es una aplicación diseñada para brindar seguridad y protección a las mujeres 
+            ProTG Mujer es una aplicación del{' '}
+            <Text style={styles.highlightText}>Gobierno de Sahuayo (2024-2027) </Text>
+             diseñada para brindar seguridad y protección a las mujeres 
             en situaciones de emergencia. Con un simple toque, puedes enviar una alerta con tu ubicación 
             actual a los servicios de emergencia.
           </Text>
@@ -141,6 +143,10 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: '#ccc',
     lineHeight: 22,
+  },
+  highlightText: {
+    color: '#3b82f6', // Color azul
+    fontWeight: 'bold',
   },
   featureItem: {
     flexDirection: 'row',

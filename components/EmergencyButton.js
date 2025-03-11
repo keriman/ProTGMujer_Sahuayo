@@ -6,8 +6,7 @@ import { StatusBar } from 'expo-status-bar';
 import * as SQLite from 'expo-sqlite';
 
 // URL del servidor
-//const SERVER_URL = 'https://sahuayo-c4.ngrok.app/PROTG/post_alert.php';
-const SERVER_URL = 'http://192.168.31.33/boton911Mujer/post_alert.php';
+const SERVER_URL = 'https://sahuayo-c4.ngrok.app/PROTG/post_alert.php';
 const TRACKING_DURATION = 5 * 60 * 1000; // 5 minutos en milisegundos
 
 const EmergencyButton = () => {

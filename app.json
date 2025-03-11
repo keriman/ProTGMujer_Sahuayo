@@ -8,6 +8,11 @@
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/images/LogoSahuayo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#000000"
+    },
     "newArchEnabled": true,
     "android": {
       "minSdkVersion": 19,
@@ -38,10 +43,10 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
+          "image": "./assets/images/LogoSahuayo.png",
           "imageWidth": 200,
           "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
+          "backgroundColor": "#000000"
         }
       ],
       "expo-sqlite"
