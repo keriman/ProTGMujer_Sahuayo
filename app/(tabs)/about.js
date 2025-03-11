@@ -18,6 +18,18 @@ export default function AboutScreen() {
           <Text style={styles.version}>Versión 1.0.0</Text>
         </View>
         
+        {/* Sección para el logo del Gobierno de Sahuayo */}
+        <View style={styles.governmentSection}>
+          <Text style={styles.governmentTitle}>Una iniciativa de:</Text>
+          <Image 
+            source={require('@/assets/images/LogoSahuayo.png')} 
+            style={styles.governmentLogo}
+            resizeMode="contain"
+          />
+          <Text style={styles.governmentSubtitle}>Gobierno de Sahuayo</Text>
+          <Text style={styles.governmentYears}>2024-2027</Text>
+        </View>
+        
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Acerca de esta aplicación</Text>
           <Text style={styles.paragraph}>
@@ -45,7 +57,7 @@ export default function AboutScreen() {
           </View>
         </View>
         
-        {/* Nueva sección para los datos del desarrollador */}
+        {/* Sección del desarrollador */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Desarrollador</Text>
           <View style={styles.featureItem}>
@@ -109,7 +121,7 @@ const styles = StyleSheet.create({
   },
   header: {
     alignItems: 'center',
-    marginBottom: 30,
+    marginBottom: 20,
     marginTop: 20,
   },
   logo: {
@@ -126,6 +138,34 @@ const styles = StyleSheet.create({
   version: {
     fontSize: 14,
     color: '#999',
+  },
+  // Estilos para la sección del gobierno
+  governmentSection: {
+    backgroundColor: '#333',
+    borderRadius: 15,
+    padding: 20,
+    marginBottom: 20,
+    alignItems: 'center',
+  },
+  governmentTitle: {
+    fontSize: 14,
+    color: '#ccc',
+    marginBottom: 10,
+  },
+  governmentLogo: {
+    width: 150,
+    height: 100,
+    marginBottom: 10,
+  },
+  governmentSubtitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: 'white',
+    marginBottom: 4,
+  },
+  governmentYears: {
+    fontSize: 14,
+    color: '#ccc',
   },
   section: {
     backgroundColor: '#333',
