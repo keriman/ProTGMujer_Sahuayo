@@ -6,13 +6,15 @@ import { StatusBar } from 'expo-status-bar';
 import * as SQLite from 'expo-sqlite';
 
 // URL del servidor
-const SERVER_URL = 'https://sahuayo-c4.ngrok.app/PROTG/post_alert.php';
+//const SERVER_URL = 'https://sahuayo-c4.ngrok.app/PROTG/post_alert.php';
+const SERVER_URL = 'http://192.168.31.33/boton911Mujer/post_alert.php';
 const TRACKING_DURATION = 5 * 60 * 1000; // 5 minutos en milisegundos
 
 const EmergencyButton = () => {
   const [isTracking, setIsTracking] = useState(false);
   const [alertSent, setAlertSent] = useState(false);
   const [locationPermission, setLocationPermission] = useState(null);
+  const [helpMessage, setHelpMessage] = useState(false); // Estado para el mensaje de "ayuda en camino"
   const [profileData, setProfileData] = useState({
     name: 'Usuario de ProTG Mujer',
     phone: 'Emergencia Móvil'
@@ -22,6 +24,7 @@ const EmergencyButton = () => {
   const intervalRef = useRef(null);
   const locationSubscriptionRef = useRef(null);
   const trackingTimerRef = useRef(null);
+  const helpMessageTimerRef = useRef(null); // Referencia para el timer del mensaje
   
   // Animación para el punto parpadeante
   const blinkAnim = useRef(new Animated.Value(0.4)).current;
@@ -109,6 +112,15 @@ const EmergencyButton = () => {
         stopTracking();
         Alert.alert("Fin de seguimiento", "El período de 5 minutos de envío de ubicación ha terminado.");
       }, TRACKING_DURATION);
+      
+      // Nuevo temporizador para mostrar el mensaje de ayuda a los 6 segundos
+      helpMessageTimerRef.current = setTimeout(() => {
+        setHelpMessage(true);
+        // Ocultamos el mensaje después de 5 segundos
+        setTimeout(() => {
+          setHelpMessage(false);
+        }, 5000);
+      }, 6000);
     } else {
       // Si isTracking cambia a false, detener todo el seguimiento
       if (intervalRef.current) {
@@ -125,6 +137,14 @@ const EmergencyButton = () => {
         clearTimeout(trackingTimerRef.current);
         trackingTimerRef.current = null;
       }
+      
+      if (helpMessageTimerRef.current) {
+        clearTimeout(helpMessageTimerRef.current);
+        helpMessageTimerRef.current = null;
+      }
+      
+      // Asegurarse de que el mensaje de ayuda se oculte si se detiene el seguimiento
+      setHelpMessage(false);
     }
     
     // Función de limpieza
@@ -142,6 +162,11 @@ const EmergencyButton = () => {
       if (locationSubscriptionRef.current) {
         locationSubscriptionRef.current.remove();
         locationSubscriptionRef.current = null;
+      }
+      
+      if (helpMessageTimerRef.current) {
+        clearTimeout(helpMessageTimerRef.current);
+        helpMessageTimerRef.current = null;
       }
     };
   }, [isTracking]);
@@ -178,6 +203,15 @@ const EmergencyButton = () => {
       clearTimeout(trackingTimerRef.current);
       trackingTimerRef.current = null;
     }
+    
+    // Limpiar el temporizador del mensaje de ayuda
+    if (helpMessageTimerRef.current) {
+      clearTimeout(helpMessageTimerRef.current);
+      helpMessageTimerRef.current = null;
+    }
+    
+    // Ocultar el mensaje de ayuda si está visible
+    setHelpMessage(false);
     
     // Por último, actualizar el estado
     setIsTracking(false);
@@ -361,6 +395,15 @@ const EmergencyButton = () => {
           </Text>
         </View>
       )}
+      
+      {/* Nuevo mensaje de ayuda en camino */}
+      {helpMessage && (
+        <View style={styles.helpMessage}>
+          <Text style={styles.helpMessageText}>
+            Acabamos de recibir tu solicitud, la ayuda está en camino
+          </Text>
+        </View>
+      )}
     </View>
   );
 };
@@ -457,6 +500,31 @@ const styles = StyleSheet.create({
   },
   alertText: {
     color: 'white',
+  },
+  // Estilos para el nuevo mensaje de ayuda
+  helpMessage: {
+    position: 'absolute',
+    top: '40%',
+    left: 20,
+    right: 20,
+    backgroundColor: '#ec4899',
+    paddingVertical: 15,
+    paddingHorizontal: 20,
+    borderRadius: 12,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.29,
+    shadowRadius: 4.65,
+    elevation: 7,
+  },
+  helpMessageText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
+    textAlign: 'center',
   }
 });
 

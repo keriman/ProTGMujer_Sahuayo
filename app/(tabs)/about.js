@@ -43,18 +43,42 @@ export default function AboutScreen() {
           </View>
         </View>
         
+        {/* Nueva sección para los datos del desarrollador */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Desarrollador</Text>
+          <View style={styles.featureItem}>
+            <IconSymbol name="person.fill" size={24} color="#ec4899" />
+            <Text style={styles.featureText}>
+              Edson Keri Barrera Mendoza
+            </Text>
+          </View>
+          <View style={styles.featureItem}>
+            <IconSymbol name="briefcase.fill" size={24} color="#ec4899" />
+            <Text style={styles.featureText}>
+              K-Solutions
+            </Text>
+          </View>
+          <TouchableOpacity 
+            style={styles.contactItem}
+            onPress={() => Linking.openURL('mailto:ekbarreram@gmail.com')}
+          >
+            <IconSymbol name="envelope.fill" size={20} color="#ec4899" />
+            <Text style={styles.contactText}>ekbarreram@gmail.com</Text>
+          </TouchableOpacity>
+          <TouchableOpacity 
+            style={styles.contactItem}
+            onPress={() => Linking.openURL('https://www.k-solutions.com.mx/')}
+          >
+            <IconSymbol name="globe" size={20} color="#ec4899" />
+            <Text style={styles.contactText}>www.k-solutions.com.mx</Text>
+          </TouchableOpacity>
+        </View>
+        
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Contacto</Text>
           <TouchableOpacity 
             style={styles.contactItem}
-            onPress={() => Linking.openURL('mailto:soporte@protgmujer.gob.mx')}
-          >
-            <IconSymbol name="envelope.fill" size={20} color="#ec4899" />
-            <Text style={styles.contactText}>soporte@protgmujer.gob.mx</Text>
-          </TouchableOpacity>
-          <TouchableOpacity 
-            style={styles.contactItem}
-            onPress={() => Linking.openURL('tel:911')}
+            onPress={() => Linking.openURL('tel:3535316545')}
           >
             <IconSymbol name="phone.fill" size={20} color="#ec4899" />
             <Text style={styles.contactText}>C4 - Emergencias</Text>
