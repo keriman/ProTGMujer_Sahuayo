@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Alert, Platform, Animated } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Alert, Platform, Animated, Linking } from 'react-native';
 import * as Location from 'expo-location';
 import * as Haptics from 'expo-haptics';
 import { StatusBar } from 'expo-status-bar';
@@ -326,6 +326,11 @@ const EmergencyButton = () => {
     }
   };
 
+  // Función para abrir el sitio web del gobierno municipal
+  const openOfficialWebsite = () => {
+    Linking.openURL('https://sahuayo.gob.mx/');
+  };
+
   // Manejar el clic en el botón (iniciar o detener)
   const handleEmergencyPress = () => {
     // Proporcionar feedback háptico
@@ -350,6 +355,7 @@ const EmergencyButton = () => {
   return (
     <View style={styles.container}>
       <StatusBar style="light" />
+      
       <View style={styles.card}>
         <Text style={styles.title}>¿Estás en peligro?</Text>
         
@@ -371,6 +377,14 @@ const EmergencyButton = () => {
             ? "Presiona el botón para detener la alerta" 
             : "Presiona el botón para emitir una alerta al C4"}
         </Text>
+        
+        {/* Aclaración de fuente de información - Google Play compliance */}
+        <TouchableOpacity onPress={openOfficialWebsite}>
+          <Text style={styles.sourceInfo}>
+            La información de emergencia proviene del C4 Sahuayo. 
+            Toque aquí para visitar el sitio web oficial del gobierno.
+          </Text>
+        </TouchableOpacity>
       </View>
       
       {/* Indicador de seguimiento */}
@@ -395,7 +409,7 @@ const EmergencyButton = () => {
         </View>
       )}
       
-      {/* Nuevo mensaje de ayuda en camino */}
+      {/* Mensaje de ayuda en camino */}
       {helpMessage && (
         <View style={styles.helpMessage}>
           <Text style={styles.helpMessageText}>
@@ -403,6 +417,14 @@ const EmergencyButton = () => {
           </Text>
         </View>
       )}
+      
+      {/* Disclaimer al pie - Google Play compliance */}
+      <View style={styles.disclaimerFooter}>
+        <Text style={styles.disclaimerText}>
+          Esta aplicación es desarrollada por K-Solutions y no representa oficialmente 
+          a ninguna entidad gubernamental.
+        </Text>
+      </View>
     </View>
   );
 };
@@ -466,6 +488,15 @@ const styles = StyleSheet.create({
     color: '#999',
     textAlign: 'center',
     fontSize: 16,
+    marginBottom: 15,
+  },
+  // Estilo para información de la fuente - Google Play compliance
+  sourceInfo: {
+    color: '#3b82f6',
+    textAlign: 'center',
+    fontSize: 12,
+    marginTop: 5,
+    textDecorationLine: 'underline',
   },
   trackingIndicator: {
     position: 'absolute',
@@ -500,7 +531,7 @@ const styles = StyleSheet.create({
   alertText: {
     color: 'white',
   },
-  // Estilos para el nuevo mensaje de ayuda
+  // Estilos para el mensaje de ayuda
   helpMessage: {
     position: 'absolute',
     top: '40%',
@@ -524,6 +555,22 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     textAlign: 'center',
+  },
+  // Estilo para el disclaimer al pie - Google Play compliance
+  disclaimerFooter: {
+    position: 'absolute',
+    bottom: 15,
+    left: 20,
+    right: 20,
+    backgroundColor: 'rgba(51, 51, 51, 0.8)',
+    paddingVertical: 8,
+    paddingHorizontal: 15,
+    borderRadius: 10,
+  },
+  disclaimerText: {
+    color: '#ccc',
+    textAlign: 'center',
+    fontSize: 11,
   }
 });
 

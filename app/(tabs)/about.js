@@ -8,6 +8,14 @@ export default function AboutScreen() {
     <SafeAreaView style={styles.safeArea}>
       <StatusBar style="light" />
       <ScrollView style={styles.container}>
+        {/* Disclaimer Banner - Added for Google Play compliance */}
+        <View style={styles.disclaimerBanner}>
+          <Text style={styles.disclaimerText}>
+            AVISO: Esta aplicación no representa una entidad gubernamental oficial. 
+            Es desarrollada por un tercero bajo autorización del Gobierno Municipal de Sahuayo.
+          </Text>
+        </View>
+        
         <View style={styles.header}>
           <Image 
             source={require('@/assets/images/logo.png')} 
@@ -20,7 +28,7 @@ export default function AboutScreen() {
         
         {/* Sección para el logo del Gobierno de Sahuayo */}
         <View style={styles.governmentSection}>
-          <Text style={styles.governmentTitle}>Una iniciativa de:</Text>
+          <Text style={styles.governmentTitle}>Una iniciativa en colaboración con:</Text>
           <Image 
             source={require('@/assets/images/LogoSahuayo.png')} 
             style={styles.governmentLogo}
@@ -33,11 +41,19 @@ export default function AboutScreen() {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Acerca de esta aplicación</Text>
           <Text style={styles.paragraph}>
-            ProTG Mujer es una aplicación del{' '}
+            ProTG Mujer es una aplicación desarrollada en colaboración con el{' '}
             <Text style={styles.highlightText}>Gobierno de Sahuayo (2024-2027) </Text>
-             diseñada para brindar seguridad y protección a las mujeres 
+            diseñada para brindar seguridad y protección a las mujeres 
             en situaciones de emergencia. Con un simple toque, puedes enviar una alerta con tu ubicación 
             actual a los servicios de emergencia.
+          </Text>
+          
+          {/* Información adicional de la fuente gubernamental */}
+          <Text style={styles.paragraph}>
+            La información y servicios de emergencia son provistos por el Centro de Control,
+            Comando, Comunicación y Cómputo (C4) de Sahuayo. Para más información oficial,
+            visite el sitio web del gobierno municipal o contacte directamente a las oficinas
+            de seguridad pública.
           </Text>
         </View>
         
@@ -97,11 +113,46 @@ export default function AboutScreen() {
             <IconSymbol name="phone.fill" size={20} color="#ec4899" />
             <Text style={styles.contactText}>C4 - Emergencias</Text>
           </TouchableOpacity>
+          
+          {/* Enlace al sitio web oficial del gobierno */}
+          <TouchableOpacity 
+            style={styles.contactItem}
+            onPress={() => Linking.openURL('https://sahuayo.gob.mx/')}
+          >
+            <IconSymbol name="globe" size={20} color="#ec4899" />
+            <Text style={styles.contactText}>Sitio web oficial del Gobierno de Sahuayo</Text>
+          </TouchableOpacity>
+        </View>
+        
+        {/* Política de privacidad y aviso legal */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Política de Privacidad y Aviso Legal</Text>
+          <TouchableOpacity 
+            style={styles.contactItem}
+            onPress={() => Linking.openURL('https://www.k-solutions.com.mx/protg-privacy-policy')}
+          >
+            <IconSymbol name="doc.text" size={20} color="#ec4899" />
+            <Text style={styles.contactText}>Consultar Política de Privacidad</Text>
+          </TouchableOpacity>
+          <Text style={styles.legalText}>
+            K-Solutions es responsable del tratamiento de los datos personales recopilados por esta aplicación.
+            La información de ubicación solo se utiliza para fines de emergencia y se eliminará después de
+            cumplido su propósito de asistencia. Para más información, consulte nuestra política de privacidad.
+          </Text>
+        </View>
+        
+        {/* Segundo disclaimer al final para mayor claridad */}
+        <View style={styles.disclaimerFooter}>
+          <Text style={styles.disclaimerFooterText}>
+            AVISO IMPORTANTE: Esta aplicación es desarrollada y mantenida por K-Solutions, una empresa privada,
+            y no es un producto oficial del Gobierno de Sahuayo. Si bien colaboramos con las autoridades para
+            mejorar la seguridad ciudadana, esta aplicación no representa oficialmente a ninguna entidad gubernamental.
+          </Text>
         </View>
         
         <View style={styles.footer}>
           <Text style={styles.copyright}>
-            © 2024-2027 Todos los derechos reservados
+            © 2024 K-Solutions. Todos los derechos reservados
           </Text>
         </View>
       </ScrollView>
@@ -118,6 +169,19 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#000',
     padding: 20,
+  },
+  // Estilo para el banner de disclaimer
+  disclaimerBanner: {
+    backgroundColor: '#f43f5e',
+    padding: 15,
+    borderRadius: 10,
+    marginBottom: 20,
+  },
+  disclaimerText: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    fontSize: 14,
   },
   header: {
     alignItems: 'center',
@@ -183,6 +247,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: '#ccc',
     lineHeight: 22,
+    marginBottom: 15,
   },
   highlightText: {
     color: '#3b82f6', // Color azul
@@ -209,6 +274,27 @@ const styles = StyleSheet.create({
     color: '#ccc',
     marginLeft: 10,
     textDecorationLine: 'underline',
+  },
+  legalText: {
+    fontSize: 13,
+    color: '#999',
+    marginTop: 10,
+    lineHeight: 18,
+  },
+  // Estilo para el segundo disclaimer al final
+  disclaimerFooter: {
+    backgroundColor: '#333',
+    padding: 15,
+    borderRadius: 10,
+    marginBottom: 20,
+    borderWidth: 1,
+    borderColor: '#f43f5e',
+  },
+  disclaimerFooterText: {
+    color: '#ccc',
+    textAlign: 'center',
+    fontSize: 13,
+    lineHeight: 18,
   },
   footer: {
     alignItems: 'center',
