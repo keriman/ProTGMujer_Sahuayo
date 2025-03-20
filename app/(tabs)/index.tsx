@@ -1,10 +1,14 @@
 import React from 'react';
 import { View, StyleSheet, SafeAreaView, Text } from 'react-native';
 import EmergencyButton from '@/components/EmergencyButton';
+import DisclaimerModal from '@/components/DisclaimerModal';
 
 export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.safeArea}>
+      {/* Modal de disclaimer que aparece la primera vez */}
+      <DisclaimerModal />
+      
       {/* Disclaimer Banner - Added for Google Play compliance */}
       <View style={styles.disclaimerBanner}>
         <Text style={styles.disclaimerText}>

@@ -141,6 +141,11 @@ const ProfileScreen = () => {
 
   return (
     <SafeAreaView style={styles.safeArea}>
+    <View style={styles.disclaimerBanner}>
+      <Text style={styles.disclaimerText}>
+        Esta aplicación no es una entidad gubernamental oficial
+      </Text>
+    </View>
       <ScrollView style={styles.container}>
         <View style={styles.profileHeader}>
           <TouchableOpacity 
@@ -404,6 +409,16 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     fontSize: 16,
+  },
+  disclaimerBanner: {
+    backgroundColor: '#f43f5e',
+    padding: 8,
+    alignItems: 'center',
+  },
+  disclaimerText: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 12,
   },
 });
 
