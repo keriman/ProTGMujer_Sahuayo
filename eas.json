@@ -15,6 +15,14 @@
       "autoIncrement": true,
       "developmentClient": false,
       "distribution": "store"
+    },
+    "apk": {
+      "android": {
+        "buildType": "apk"
+      },
+      "autoIncrement": true,
+      "developmentClient": false,
+      "distribution": "internal"
     }
   },
   "submit": {
