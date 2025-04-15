@@ -117,7 +117,7 @@ export default function AboutScreen() {
           {/* Enlace al sitio web oficial del gobierno */}
           <TouchableOpacity 
             style={styles.contactItem}
-            onPress={() => Linking.openURL('https://sahuayo.gob.mx/')}
+            onPress={() => Linking.openURL('https://gob.sahuayomich.gob.mx')}
           >
             <IconSymbol name="globe" size={20} color="#ec4899" />
             <Text style={styles.contactText}>Sitio web oficial del Gobierno de Sahuayo</Text>
@@ -129,7 +129,7 @@ export default function AboutScreen() {
           <Text style={styles.sectionTitle}>Política de Privacidad y Aviso Legal</Text>
           <TouchableOpacity 
             style={styles.contactItem}
-            onPress={() => Linking.openURL('https://www.k-solutions.com.mx/aviso_de_privacidad.html')}
+            onPress={() => Linking.openURL('https://gob.sahuayomich.gob.mx/aviso-de-privacidad-protg-mujer/')}
           >
             <IconSymbol name="doc.text" size={20} color="#ec4899" />
             <Text style={styles.contactText}>Consultar Política de Privacidad</Text>
